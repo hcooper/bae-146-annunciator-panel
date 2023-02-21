@@ -15,10 +15,16 @@ vr.clear_sim_variables()
 VARS = {
 
     # Side block
-    # "(L:L_ANNUNS_WhiteBars_il)",
-    # "(L:L_ANNUNS_Splr_Y_il)",
-    # "(L:L_ANNUNS_Splr_G_il)",
-    # "(L:L_ANNUNS_AirBrk_il)",
+    "(L:L_ANNUNS_Att_amber_il)",
+    "(L:L_ANNUNS_Hdg_amber_il)",
+    "(L:L_ANNUNS_Cat2_green_il)",
+    "(L:L_ANNUNS_Cat2_amber_il)",
+    "(L:L_ANNUNS_WhiteBars_il)",
+    "(L:L_ANNUNS_Splr_Y_il)",
+    "(L:L_ANNUNS_Splr_G_il)",
+    "(L:L_ANNUNS_AirBrk_il)",
+    "(L:L_ANNUNS_Gsl_dev_il)",
+    "(L:L_ANNUNS_Loc_dev_il)",
 
     # Main block
     "(L:L_ANNUNS_YD_amber_il)",
@@ -72,17 +78,25 @@ async def connect(sid, environ):
 async def disconnect(sid):
     print(sid, 'disconnected')
 
+@sio.event
+async def force_update(sid):
+    print("Replying to forced update request!")
+    for k,v in status.items():
+        await send_state(k, v, sid)
+
 async def task(sid):
     while True:
         await sio.sleep(0.1)
         while not q.empty():
             event = q.get()
             status[event.name] = event.float_value
-            visibility = 'visible' if event.float_value else 'hidden'
-            payload = {'element_id': event.name, 'visibility': visibility}
-            print(f"Sending: {payload}")
-            await sio.emit('update', payload, to=sid)
+            await send_state(event.name, event.float_value, sid)
+
+async def send_state(k, v, sid):
+    visibility = 'visible' if v else 'hidden'
+    payload = {'element_id': k, 'visibility': visibility}
+    print(f"Sending: {payload}")
+    await sio.emit('update_state', payload, to=sid)
 
 for var in VARS:
     vr.get(var)
-    status[var] = False
