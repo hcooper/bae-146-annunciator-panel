@@ -1,11 +1,7 @@
 import socketio
-from time import sleep
-import logging, logging.handlers
 from simconnect_mobiflight import SimConnectMobiFlight
 from mobiflight_variable_requests import MobiFlightVariableRequests
-from time import sleep
 from queue import Queue
-import os
 
 q = Queue(maxsize=100)
 sm = SimConnectMobiFlight()
@@ -62,7 +58,6 @@ VARS = {
 }
 status={}
 
-
 sio = socketio.AsyncServer(async_mode='asgi')
 app = socketio.ASGIApp(sio, static_files={
     '/': './public/'
@@ -95,7 +90,7 @@ async def task(sid):
 async def send_state(k, v, sid):
     visibility = 'visible' if v else 'hidden'
     payload = {'element_id': k, 'visibility': visibility}
-    print(f"Sending: {payload}")
+    print(f"Sending: {payload} to {sid}")
     await sio.emit('update_state', payload, to=sid)
 
 for var in VARS:
