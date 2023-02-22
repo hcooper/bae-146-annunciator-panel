@@ -6,7 +6,7 @@ This reproduces the BAE 146 annunciator panel from MSFS2020 in a webpage, for us
 
 ![2023-02-21 15_50_03-Socket IO Demo — Mozilla Firefox](https://user-images.githubusercontent.com/131580/220485540-5196750c-4ab5-43ad-b417-eb5f85024dd4.png)
 
-This setup uses the python-based mobiflight simconnect libraries [source](https://github.com/Koseng/MSFSPythonSimConnectMobiFlightExtension/tree/main/prototype) to subscribe to the status of the annunciator panel. It then starts a webserver hosting a javascript client which is displayed via a browser. The two communicator via socketio (i.e. websockets), and should update in real time.
+This setup uses the python-based mobiflight simconnect libraries ([source](https://github.com/Koseng/MSFSPythonSimConnectMobiFlightExtension/tree/main/prototype)) to subscribe to the status of the annunciator panel. It then starts a webserver hosting a javascript client which is displayed via a browser. The two communicator via socketio (i.e. websockets), and should update in real time.
 
 ## Setup & Run
 
