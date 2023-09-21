@@ -4,66 +4,74 @@
     <title>BAE 146 Annunciator Panel</title>
 
     <style type="text/css">
-            body {
-              background-color: black;
-            }
-            .grid-container82 {
-              grid-template-columns: repeat(8, 62px);
-              grid-template-rows: repeat(2, 62px);
-            }
+      body {
+        background-color: black;
+      }
+      .grid-container82 {
+        grid-template-columns: repeat(8, 70px);
+        grid-template-rows: repeat(2, 70px);
+      }
 
-            .grid-container32 {
-              grid-template-columns: repeat(3, 62px);
-              grid-template-rows: repeat(2, 62px);
-            }
+      .grid-container32 {
+        grid-template-columns: repeat(3, 70px);
+        grid-template-rows: repeat(2, 70px);
+      }
 
-            .grid-container {
-              gap: 4px; /* adds space between the squares */
-              display: grid;
-            }
+      .grid-container {
+        gap: 4px; /* adds space between the squares */
+        display: grid;
+      }
 
-            .grid-item {
-              background-color: #333040; /* sets the background color of the squares */
-              border: 1px solid #a5a4a4; /* adds a border around the squares */
-              text-align: center; /* centers the content inside the squares */
-              /*padding: 10px; /* adds some padding to the content inside the squares */
-              font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-                sans-serif;
-              font-weight: 600;
-              border-radius: 5px;
-              display:flex;
-              justify-content: center;
-              align-items: center;
-            }
+      .grid-item {
+        background-color: #333040; /* sets the background color of the squares */
+        border: 1px solid #a5a4a4; /* adds a border around the squares */
+        text-align: center; /* centers the content inside the squares */
+        /*padding: 10px; /* adds some padding to the content inside the squares */
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        font-weight: 600;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-            .green {
-              color: rgb(1, 172, 1);
-              text-shadow: 0 0 10px rgb(1, 172, 1);
-            }
+      .dwrap {
+        display: inline-block;
+      }
 
-            .white {
-              color: white;
-              text-shadow: 0 0 10px white;
-            }
+      .green {
+        color: rgb(1, 172, 1);
+        text-shadow: 0 0 10px rgb(1, 172, 1);
+      }
 
-            .orange {
-              color: orange;
-              text-shadow: 0 0 10px orange;
-            }
+      .white {
+        color: white;
+        text-shadow: 0 0 10px white;
+      }
 
-            .red {
-              color: red;
-              text-shadow: 0 0 10px red;
-            }
+      .orange {
+        color: orange;
+        text-shadow: 0 0 10px orange;
+      }
 
-            span {
-              visibility: hidden;
-              display: block;
-            }
+      .red {
+        color: red;
+        text-shadow: 0 0 10px red;
+      }
 
-            .inliner {
-              display: inline;
-            }
+      span {
+        visibility: hidden;
+        display: block;
+      }
+
+      .inliner {
+        display: inline;
+      }
+
+      .spacer {
+        width: 8px;
+      }
 
       .arrow::before, .arrow::after {
         content: "";
@@ -82,181 +90,214 @@
         border-width: 5px 0 5px 8px; 
         border-color: transparent transparent transparent currentColor; 
       }
+
+      .solid-line {
+        letter-spacing: -2px;
+      }
+
+      .modern-text {
+          font-family: 'Helvetica Neue', Arial, sans-serif; /* Use a modern sans-serif font */
+          font-weight: 400; /* Normal font weight */
+          font-size: 24px; /* Adjust the font size as needed */
+          letter-spacing: 1px; /* Add some letter spacing for readability */
+          line-height: 1.5; /* Set the line height for better readability */
+          text-transform: uppercase; /* Uppercase text */
+      }
+
     </style>
   </head>
   <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.min.js"></script>
     <script src="index.js"></script>
 
-    <div class="grid-container32 grid-container">
-      <div class="grid-item" id="">
-        <div class="wrap">
-          <span class="white" id="(L:L_ANNUNS_WhiteBars_il)"
-            >=====<br />=====</span
-          >
+    <div class="dwrap">
+      <div class="grid-container32 grid-container">
+        <div class="grid-item" id="">
+          <div class="wrap">
+            <span class="white solid-line" id="(L:L_ANNUNS_WhiteBars_il)">
+                =========
+                <br />
+                =========
+            </span>
+          </div>
         </div>
-      </div>
 
-      <div class="grid-item" id="">
-        <div class="wrap">
-          <span class="orange" id="(L:L_ANNUNS_Att_amber_il)">> ATT <</span>
+        <div class="grid-item" id="">
+          <div class="wrap">
+            <span class="orange arrow right" id="(L:L_ANNUNS_Att_amber_il)"> ATT </span>
             <span class="orange arrow right" id="(L:L_ANNUNS_Hdg_amber_il)"> HDG </span>
+          </div>
         </div>
-      </div>
 
-      <div class="grid-item" id="">
-        <div class="wrap">
-          <span class="green" id="(L:L_ANNUNS_Cat2_green_il)">CAT 2</span>
-          <span class="orange" id="(L:L_ANNUNS_Cat2_amber_il)">CAT 2</span>
+        <div class="grid-item" id="">
+          <div class="wrap">
+            <span class="green" id="(L:L_ANNUNS_Cat2_green_il)">CAT 2</span>
+            <span class="orange" id="(L:L_ANNUNS_Cat2_amber_il)">CAT 2</span>
+          </div>
         </div>
-      </div>
 
-      <div class="grid-item" id="">
-        <div class="wrap">
-          <span class="green" id="(L:L_ANNUNS_Splr_Y_il)">SPLR Y</span>
-          <span class="green" id="(L:L_ANNUNS_Splr_G_il)">SPLR G</span>
+        <div class="grid-item" id="">
+          <div class="wrap">
+            <span class="green" id="(L:L_ANNUNS_Splr_Y_il)">SPLR Y</span>
+            <span class="green" id="(L:L_ANNUNS_Splr_G_il)">SPLR G</span>
+          </div>
         </div>
-      </div>
 
-      <div class="grid-item" id="">
-        <div class="wrap">
-          <span class="white" id="(L:L_ANNUNS_AirBrk_il)"
-            >AIR BRK<br />=====</span
-          >
+        <div class="grid-item" id="">
+          <div class="wrap">
+            <span class="white" id="(L:L_ANNUNS_AirBrk_il)">
+                AIR BRK
+                <br />
+                <span class="solid-line">=========</span>
+            </span>
+          </div>
         </div>
-      </div>
 
-      <div class="grid-item" id="">
-        <div class="wrap">
-          <span class="orange" id="(L:L_ANNUNS_Gsl_dev_il)">GSL DEV</span>
-          <span class="orange" id="(L:L_ANNUNS_Loc_dev_il)">LOC DEV</span>
+        <div class="grid-item" id="">
+          <div class="wrap">
+            <span class="orange" id="(L:L_ANNUNS_Gsl_dev_il)">GSL DEV</span>
+            <span class="orange" id="(L:L_ANNUNS_Loc_dev_il)">LOC DEV</span>
+          </div>
         </div>
       </div>
     </div>
 
-    <hr />
-    <div class="grid-container82 grid-container">
-      <div class="grid-item" id="">
-        <div class="wrap">
-          <div>
-          <span class="white inliner" id="(L:L_ANNUNS_GSL_white_il)">GSL</span>
-          <span class="white inliner" id="(L:L_ANNUNS_ALT_white_il)">ALT</span>
+    <div class="dwrap spacer"><!-- spacer --></div>
+    <div class="dwrap">
+      <div class="grid-container82 grid-container">
+        <div class="grid-item" id="">
+          <div class="wrap">
+            <div>
+              <span class="white inliner" id="(L:L_ANNUNS_GSL_white_il)">GSL</span>
+              <span class="white inliner" id="(L:L_ANNUNS_ALT_white_il)">ALT</span>
+            </div>
+            <div>
+              <span class="green inliner" id="(L:L_ANNUNS_GSL_green_il)">GSL</span>
+              <span class="green inliner" id="(L:L_ANNUNS_ALT_green_il)">ALT</span>
+            </div>
+          </div>
         </div>
-        <div>
-          <span class="green inliner" id="(L:L_ANNUNS_GSL_green_il)">GSL</span>
-          <span class="green inliner" id="(L:L_ANNUNS_ALT_green_il)">ALT</span>
-        </div>
-        </div>
-      </div>
 
-      <div class="grid-item" id="">
-        <div class="wrap">
+        <div class="grid-item" id="">
+          <div class="wrap">
             <span class="green arrow right" id="(L:L_ANNUNS_GA_il)"> GA </span>
-          <span class="green" id="(L:L_ANNUNS_VS_il)">VA</span>
+            <span class="green" id="(L:L_ANNUNS_VS_il)">VS</span>
+          </div>
         </div>
-      </div>
 
-      <div class="grid-item" id="">
-        <div class="wrap">
-          <span class="green" id="(L:L_ANNUNS_Mach_il)">MACH</span>
-          <span class="green" id="(L:L_ANNUNS_IAS_il)">IAS</span>
+        <div class="grid-item" id="">
+          <div class="wrap">
+            <span class="green" id="(L:L_ANNUNS_Mach_il)">MACH</span>
+            <span class="green" id="(L:L_ANNUNS_IAS_il)">IAS</span>
+          </div>
         </div>
-      </div>
 
-      <div class="grid-item" id="">
-        <div class="wrap">
-          <span class="white" id="(L:L_ANNUNS_WhiteBars_il)">=====</span>
-          <span class="orange" id="(L:L_ANNUNS_Msg_amber_il)">MSG OR</span>
+        <div class="grid-item" id="">
+          <div class="wrap">
+            <span class="white solid-line" id="(L:L_ANNUNS_WhiteBars_il)">
+                =========
+            </span>
+            <span class="orange" id="(L:L_ANNUNS_Msg_amber_il)">MSG OR</span>
+          </div>
         </div>
-      </div>
 
-      <div class="grid-item" id="">
-        <div class="wrap">
-          <span class="green" id="(L:L_ANNUNS_Turb_il)">TURB</span>
-          <span class="green" id="(L:L_ANNUNS_Pitch_il)">PITCH</span>
+        <div class="grid-item" id="">
+          <div class="wrap">
+            <span class="green" id="(L:L_ANNUNS_Turb_il)">TURB</span>
+            <span class="green" id="(L:L_ANNUNS_Pitch_il)">PITCH</span>
+          </div>
         </div>
-      </div>
 
-      <div class="grid-item" id="">
-        <div class="wrap">
+        <div class="grid-item" id="">
+          <div class="wrap">
             <span class="red arrow right" id="(L:L_ANNUNS_AP_il)"> AP </span>
-          <span class="orange" id="(L:L_ANNUNS_El_trim_il)">EL TRIM</span>
+            <span class="orange" id="(L:L_ANNUNS_El_trim_il)">EL TRIM</span>
+          </div>
         </div>
-      </div>
 
-      <div class="grid-item" id="">
-        <div class="wrap">
-          <span class="white" id="(L:L_ANNUNS_Airway_il)">AIRWAY</span>
-          <span class="orange" id="(L:L_ANNUNS_Middle_il)">MIDDLE</span>
+        <div class="grid-item" id="">
+          <div class="wrap">
+            <span class="white" id="(L:L_ANNUNS_Airway_il)">AIRWAY</span>
+            <span class="orange" id="(L:L_ANNUNS_Middle_il)">MIDDLE</span>
+          </div>
         </div>
-      </div>
 
-      <div class="grid-item" id="">
-        <div class="wrap">
-          <span class="green" id="(L:L_ANNUNS_Rnav_green_il)">R NAV</span>
-          <span class="white" id="(L:L_ANNUNS_WhiteBars_il)">=====</span>
+        <div class="grid-item" id="">
+          <div class="wrap">
+            <span class="green" id="(L:L_ANNUNS_Rnav_green_il)">R NAV</span>
+            <span class="white solid-line" id="(L:L_ANNUNS_WhiteBars_il)">
+                =========
+            </span>
+          </div>
         </div>
-      </div>
 
-      <div class="grid-item" id="">
-        <div class="wrap">
-          <div>
-          <span class="white inliner" id="(L:L_ANNUNS_LOC_white_il)">LOC</span>
-          <span class="white inliner" id="(L:L_ANNUNS_Vor_white_il)">VOR</span>
-        </div><div>
-          <span class="green inliner" id="(L:L_ANNUNS_LOC_green_il)">LOC</span>
-          <span class="green inliner" id="(L:L_ANNUNS_Vor_green_il)">VOR</span>
+        <div class="grid-item" id="">
+          <div class="wrap">
+            <div>
+              <span class="white inliner" id="(L:L_ANNUNS_LOC_white_il)">LOC</span>
+              <span class="white inliner" id="(L:L_ANNUNS_Vor_white_il)">VOR</span>
+            </div>
+            <div>
+              <span class="green inliner" id="(L:L_ANNUNS_LOC_green_il)">LOC</span>
+              <span class="green inliner" id="(L:L_ANNUNS_Vor_green_il)">VOR</span>
+            </div>
+          </div>
         </div>
-        </div>
-      </div>
 
-      <div class="grid-item" id="">
-        <div class="wrap">
-          <span class="white" id="(L:L_ANNUNS_BckLoc_white_il)">BCK LOC</span>
-          <span class="green" id="(L:L_ANNUNS_BckLoc_green_il)">BCK LOC</span>
+        <div class="grid-item" id="">
+          <div class="wrap">
+            <span class="white" id="(L:L_ANNUNS_BckLoc_white_il)">BCK LOC</span>
+            <span class="green" id="(L:L_ANNUNS_BckLoc_green_il)">BCK LOC</span>
+          </div>
         </div>
-      </div>
 
-      <div class="grid-item" id="">
-        <div class="wrap">
-          <span class="white" id="(L:L_ANNUNS_WhiteBars_il)">=====</span>
-          <span class="green" id="(L:L_ANNUNS_Hdg_green_il)">HDG</span>
+        <div class="grid-item" id="">
+          <div class="wrap">
+            <span class="white solid-line" id="(L:L_ANNUNS_WhiteBars_il)">
+               =========
+            </span>
+            <span class="green" id="(L:L_ANNUNS_Hdg_green_il)">HDG</span>
+          </div>
         </div>
-      </div>
 
-      <div class="grid-item" id="">
-        <div class="wrap">
-          <span class="green" id="(L:L_ANNUNS_Wpt_green_il)">WPT XTK</span>
-          <span class="green" id="(L:L_ANNUNS_Lnav_green_il)">L NAV</span>
+        <div class="grid-item" id="">
+          <div class="wrap">
+            <div>
+                <span class="green inliner" id="(L:L_ANNUNS_Wpt_green_il)">WPT</span>
+                <span class="green inliner" id="(L:L_ANNUNS_Xtk_green_il)">XTK</span>
+            </div>
+            <span class="green" id="(L:L_ANNUNS_Lnav_green_il)">L NAV</span>
+          </div>
         </div>
-      </div>
 
-      <div class="grid-item" id="">
-        <div class="wrap">
-          <span class="white" id="(L:L_ANNUNS_Sync_white_il)">SYNC</span>
-          <span class="green" id="(L:L_ANNUNS_Roll_green_il)">ROLL</span>
+        <div class="grid-item" id="">
+          <div class="wrap">
+            <span class="white" id="(L:L_ANNUNS_Sync_white_il)">SYNC</span>
+            <span class="green" id="(L:L_ANNUNS_Roll_green_il)">ROLL</span>
+          </div>
         </div>
-      </div>
 
-      <div class="grid-item" id="">
-        <div class="wrap">
-          <span class="orange" id="(L:L_ANNUNS_Ail_amber_il)">< AIL ></span>
+        <div class="grid-item" id="">
+          <div class="wrap">
+            <span class="orange" id="(L:L_ANNUNS_Ail_amber_il)">< AIL ></span>
             <span class="orange arrow right" id="(L:L_ANNUNS_YD_amber_il)"> YD </span>
+          </div>
         </div>
-      </div>
 
-      <div class="grid-item" id="">
-        <div class="wrap">
-          <span class="white" id="(L:L_ANNUNS_Outer_il)">OUTER</span>
+        <div class="grid-item" id="">
+          <div class="wrap">
+            <span class="white" id="(L:L_ANNUNS_Outer_il)">OUTER</span>
+          </div>
         </div>
-      </div>
 
-      <div class="grid-item" id="">
-        <div class="wrap">
-          <span class="green" id="(L:L_ANNUNS_Nav1_il)">NAV 1</span>
-          <span class="green" id="(L:L_ANNUNS_Nav2_il)">NAV 2</span>
+        <div class="grid-item" id="">
+          <div class="wrap">
+            <span class="green" id="(L:L_ANNUNS_Nav1_il)">NAV 1</span>
+            <span class="green" id="(L:L_ANNUNS_Nav2_il)">NAV 2</span>
+          </div>
         </div>
       </div>
     </div>
+    <div id="status" class="modern-text"></div>
   </body>
 </html>
