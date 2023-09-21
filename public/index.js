@@ -5,9 +5,10 @@ sio.on('connect', () => {
   sio.emit('force_update');
 });
 
-sio.on('disconnect', () => {
-  console.log('disconnected');
-});
+  // Listen for all incoming events
+  sio.onAny((event, ...args) => {
+    console.log(sio.id, 'Received event:', event, args[0]);
+  });
 
 sio.on('update_state', (data) => {
   console.log("Got update:", data);
