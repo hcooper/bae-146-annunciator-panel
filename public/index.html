@@ -65,6 +65,23 @@
               display: inline;
             }
 
+      .arrow::before, .arrow::after {
+        content: "";
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+      }
+
+      .arrow.left::before, .arrow.right::after {
+        border-width: 5px 8px 5px 0; 
+        border-color: transparent currentColor transparent transparent;
+      }
+
+      .arrow.right::before, .arrow.left::after {
+        border-width: 5px 0 5px 8px; 
+        border-color: transparent transparent transparent currentColor; 
+      }
     </style>
   </head>
   <body>
@@ -83,7 +100,7 @@
       <div class="grid-item" id="">
         <div class="wrap">
           <span class="orange" id="(L:L_ANNUNS_Att_amber_il)">> ATT <</span>
-          <span class="orange" id="(L:L_ANNUNS_Hdg_amber_il)">> HDG <</span>
+            <span class="orange arrow right" id="(L:L_ANNUNS_Hdg_amber_il)"> HDG </span>
         </div>
       </div>
 
@@ -134,7 +151,7 @@
 
       <div class="grid-item" id="">
         <div class="wrap">
-          <span class="green" id="(L:L_ANNUNS_GA_il)">> GA <</span>
+            <span class="green arrow right" id="(L:L_ANNUNS_GA_il)"> GA </span>
           <span class="green" id="(L:L_ANNUNS_VS_il)">VA</span>
         </div>
       </div>
@@ -162,7 +179,7 @@
 
       <div class="grid-item" id="">
         <div class="wrap">
-          <span class="red" id="(L:L_ANNUNS_AP_il)">> AP <</span>
+            <span class="red arrow right" id="(L:L_ANNUNS_AP_il)"> AP </span>
           <span class="orange" id="(L:L_ANNUNS_El_trim_il)">EL TRIM</span>
         </div>
       </div>
@@ -224,7 +241,7 @@
       <div class="grid-item" id="">
         <div class="wrap">
           <span class="orange" id="(L:L_ANNUNS_Ail_amber_il)">< AIL ></span>
-          <span class="orange" id="(L:L_ANNUNS_YD_amber_il)">> YD <</span>
+            <span class="orange arrow right" id="(L:L_ANNUNS_YD_amber_il)"> YD </span>
         </div>
       </div>
 
