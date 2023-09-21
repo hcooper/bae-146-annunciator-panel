@@ -3,3 +3,5 @@ Lib
 Include
 Scripts
 pyvenv.cfg
+nodejs/
+test.html
