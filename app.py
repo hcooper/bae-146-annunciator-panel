@@ -51,6 +51,7 @@ VARS = {
     "(L:L_ANNUNS_Sync_white_il)",
     "(L:L_ANNUNS_Roll_green_il)",
     "(L:L_ANNUNS_Wpt_green_il)",
+    "(L:L_ANNUNS_Xtk_green_il)",
     "(L:L_ANNUNS_Lnav_green_il)",
     "(L:L_ANNUNS_Airway_il)",
     "(L:L_ANNUNS_Middle_il)",
