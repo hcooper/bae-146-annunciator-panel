@@ -58,7 +58,7 @@ VARS = {
     "(L:L_ANNUNS_Msg_amber_il)"
 }
 status={}
-
+room='bae146'
 sio = socketio.AsyncServer(async_mode='asgi')
 app = socketio.ASGIApp(sio, static_files={
     '/': './public/'
@@ -67,6 +67,7 @@ app = socketio.ASGIApp(sio, static_files={
 @sio.event
 async def connect(sid, environ):
     sio.start_background_task(task, sid)
+    sio.enter_room(sid, room)
     print(sid, 'connected')
 
 
@@ -91,8 +92,8 @@ async def task(sid):
 async def send_state(k, v, sid):
     visibility = 'visible' if v else 'hidden'
     payload = {'element_id': k, 'visibility': visibility}
-    print(f"Sending: {payload} to {sid}")
-    await sio.emit('update_state', payload, to=sid)
+    print(f"Sending: {payload} to {room}")
+    await sio.emit('update_state', payload, room=room)
 
 for var in VARS:
     vr.get(var)
