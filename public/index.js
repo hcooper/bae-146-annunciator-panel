@@ -1,3 +1,4 @@
+window.onload = function () {
     updateStatus('', 'green');
     updateStatus('DISCONNECTED', 'red');
 
@@ -11,3 +12,5 @@
     div.innerHTML=msg;
     div.style.color=clr;
   }
+
+};
